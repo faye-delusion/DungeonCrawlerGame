@@ -18,9 +18,9 @@ import java.awt.Dimension;
 public class Game {
     
     // Variables
-    public static final int win_width = 600;
-    public static final int win_height = 600;
-    public static final String win_title = "Awesome Game!";
+    public static final int win_width = 800;
+    public static final int win_height = 800;
+    public static final String win_title = "Dungeon Crawler";
     
     // Game window
     private JFrame gameWindow;
@@ -39,15 +39,15 @@ public class Game {
     
     private void initScreens(){
     
-        startScreen = new LoadingScreen(this);
-        startScreen.setPreferredSize(new Dimension(win_width, win_height));
+        this.startScreen = new LoadingScreen(this);
+        this.startScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
         // Levels
-        lvl1 = new Level1(this);
-        lvl1.setPreferredSize(new Dimension(win_width, win_height));
+        this.lvl1 = new Level1(this);
+        this.lvl1.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
-        gameWindow.getContentPane().add(startScreen, "StartScreen");
-        gameWindow.getContentPane().add(lvl1, "Level1");
+        gameWindow.getContentPane().add(this.startScreen, "StartScreen");
+        gameWindow.getContentPane().add(this.lvl1, "Level1");
         gameWindow.setVisible(true);
     
     }
@@ -55,39 +55,39 @@ public class Game {
     private void initWindow(){
     
         // Initiate window + set properties
-        gameWindow = new JFrame();
+        this.gameWindow = new JFrame();
         
-        gameWindow.setSize(win_width,win_height);
-        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gameWindow.getContentPane().setLayout(new CardLayout());
-        gameWindow.setResizable(false);
-        gameWindow.setLocationRelativeTo(null);
+        this.gameWindow.setSize(this.win_width,this.win_height);
+        this.gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.gameWindow.getContentPane().setLayout(new CardLayout());
+        this.gameWindow.setResizable(false);
+        this.gameWindow.setLocationRelativeTo(null);
         
-        gameWindow.setTitle(win_title);
+        gameWindow.setTitle(this.win_title);
         gameWindow.setVisible(true);
     
     }
     
     public void start(){
     
-        CardLayout cl = (CardLayout) gameWindow.getContentPane().getLayout();
-        cl.next(gameWindow.getContentPane());
-        lvl1.requestFocus();
-        lvl1.start();
+        CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
+        cl.next(this.gameWindow.getContentPane());
+        this.lvl1.requestFocus();
+        this.lvl1.start();
         
     }
     
     public void showStartScreen(){
     
-        startScreen.requestFocus();
-        gameWindow.setVisible(true);
+        this.startScreen.requestFocus();
+        this.gameWindow.setVisible(true);
     
     }
     
     public static void main(String[] args){
         
-        Game g = new Game();
-        g.showStartScreen();
+        Game game = new Game();
+        game.showStartScreen();
         
     }
     

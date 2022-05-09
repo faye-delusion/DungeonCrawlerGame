@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.levels;
 
+import com.alex.characters.Monster;
+import com.alex.util.Vector;
 import com.alex.characters.Treasure;
-import com.alex.characters.player;
+import com.alex.characters.Player;
 import com.alex.game.Game;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
@@ -26,76 +23,112 @@ import javax.swing.Timer;
  */
 public class Level1 extends JPanel implements ActionListener{
     
-    private Game g;
+    private Game game;
     private Timer timer;
     private BufferedImage background;
-    private player player;
-    private Treasure treasure;
+    private Player player;
+    private Monster[] monsters;
     private Treasure[] treasures;
     private int timeAlive;
     
-    public Level1(Game g){
+    private int number_of_treasures = 5;
+    private int number_of_monsters = 5;
     
-        this.g = g;
-        player = new player();
-        treasure = new Treasure();
+    public Level1(Game game){
+    
+        this.game = game;
+        player = new Player();
         
-        Random random = new Random();
-        
-        for (int i = 0; i > 4; i++){
-            
-            int x = random.nextInt(this.g.getWindowWidth());
-            int y = random.nextInt(this.g.getWindowHeight());
-            
-            Vector pos = new Vector(x,y);
-        
-            treasures[i] = new Treasure(pos);
-        
-        }
+        this.treasures = new Treasure[this.number_of_treasures];
+        this.monsters = new Monster[this.number_of_monsters];
         
         init();
+        reset();
     
     }
     
     private void init(){
     
         addKeyListener(new TAdapter());
-        
         setFocusable(true);
         setDoubleBuffered(true);
         
-        try{
+        try {
         
-            background = ImageIO.read(getClass().getResourceAsStream("/Images/background.png"));
+            background = ImageIO.read(getClass().getResourceAsStream("/Images/Level1Background.png"));
         
         } catch (Exception ex){
         
-            System.err.println(ex);
+            System.err.println(String.format("Error loading background image for Level 1\n%s", ex.toString()));
         
         }
         
-        timer = new Timer(10, this);
+        this.timer = new Timer(1, this);
+    
+    }
+    
+    private void reset(){
+    
+        Random random = new Random();
+        
+        Treasure t = new Treasure();
+        Monster m = new Monster();
+        
+        for (int i = 0; i < this.number_of_treasures; i++){
+
+            int x = random.nextInt(this.game.getWindowWidth() - (t.getSpriteWidth() * 2));
+            int y = random.nextInt(this.game.getWindowHeight() - (t.getSpriteHeight() * 2));
+             
+            Vector pos = new Vector(x,y);
+        
+            this.treasures[i] = new Treasure(pos);
+            System.out.println(String.format("Created new Treasure @ x%d, y%d", x, y));
+        
+        }
+        
+        for (int i = 0; i < this.number_of_monsters; i++) {
+        
+            int x = random.nextInt(this.game.getWindowWidth() - (t.getSpriteWidth() * 2));
+            int y = random.nextInt(this.game.getWindowHeight() - (t.getSpriteHeight() * 2));
+            
+            Vector pos = new Vector(x,y);
+            
+            this.monsters[i] = new Monster(pos);
+            System.out.println(String.format("Created new Monster @ x%d, y%d", x, y));
+        }
+        
+        t = null;
     
     }
     
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics graphic){
     
-        super.paintComponent(g);
+        super.paintComponent(graphic);
         
-        Graphics2D g2d = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) graphic;
         
         g2d.drawImage(background,0,0,null);
         
-        int score = player.getScore();
+        this.player.draw(g2d);
         
-        String str = String.format("Score: %o", score);
+        // Draw treasure
+        for (Treasure t : this.treasures) {
         
-        g2d.drawString(str, 0, 150);
+            t.draw(g2d);
         
-        player.draw(g2d);
+        }
         
-        treasure.draw(g2d);
+        // Draw monsters
+        for (Monster m : this.monsters) {
+        
+            m.draw(g2d);
+        
+        }
+        
+        g2d.drawString(String.format("Score: %d", this.player.getScore()), 0, 150);
+        
+        g2d.drawString(String.format("Time: %d", this.timeAlive), 0, 170);
         
         g2d.dispose();
     
@@ -103,25 +136,29 @@ public class Level1 extends JPanel implements ActionListener{
     
     public void collisions(){
     
-        player.checkCollision(treasure);
+        for (Treasure t : this.treasures) {
+        
+            this.player.checkCollision(t);
+            
+        }
     
     }
     
     public void movement(){
     
-        player.doMove();
+        this.player.doMove();
     
     }
     
     public void start(){
     
-        timer.start();
+        this.timer.start();
     
     }
     
     public void stop(){
     
-        timer.stop();
+        this.timer.stop();
     
     }
 
@@ -133,7 +170,7 @@ public class Level1 extends JPanel implements ActionListener{
         collisions();
         movement();
         repaint();
-        timeAlive = timeAlive + 10;
+        this.timeAlive = this.timeAlive + 1;
         
     }
     

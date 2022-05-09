@@ -5,7 +5,7 @@
  */
 package com.alex.characters;
 
-import com.alex.levels.Vector;
+import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -70,7 +70,19 @@ public class Treasure {
     
     public BufferedImage getSprite(){
     
-        return sprite;
+        return this.sprite;
+    
+    }
+    
+    public int getSpriteWidth(){
+       
+        return this.spriteWidth;
+    
+    }
+    
+    public int getSpriteHeight(){
+    
+        return this.spriteHeight;
     
     }
     

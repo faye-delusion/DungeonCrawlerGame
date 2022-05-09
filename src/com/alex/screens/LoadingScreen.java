@@ -23,9 +23,9 @@ public class LoadingScreen extends JPanel{
     private Game game;
     private BufferedImage background;
     
-    public LoadingScreen(Game theGame){
+    public LoadingScreen(Game game){
     
-        game = theGame;
+        this.game = game;
         init();
     
     }
@@ -34,12 +34,12 @@ public class LoadingScreen extends JPanel{
     
         try{
         
-            background = ImageIO.read(getClass().getResourceAsStream("/Images/background.png"));
+            this.background = ImageIO.read(getClass().getResourceAsStream("/Images/LoadingScreen.png"));
         
         } 
         catch(Exception ex){
         
-            System.err.println(ex);
+            System.err.println(String.format("Error loading background image for Loading Screen\n%s", ex.toString()));
         
         }
         
@@ -62,9 +62,9 @@ public class LoadingScreen extends JPanel{
         @Override
         public void keyReleased(KeyEvent e){
         
-            if (e.getKeyCode() == KeyEvent.VK_P){
+            if (e.getKeyCode() == KeyEvent.VK_SPACE){
                 
-                System.out.println("e");
+                System.out.println("Game Started");
                 game.start();
             
             }

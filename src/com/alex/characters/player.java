@@ -5,7 +5,7 @@
  */
 package com.alex.characters;
 
-import com.alex.levels.Vector;
+import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author alex
  */
-public class player {
+public class Player {
     
     private Vector position;
     private Vector displacement;
@@ -25,7 +25,7 @@ public class player {
     private int spriteHeight;
     private int score;
     
-    public player(){
+    public Player(){
     
         position = new Vector(100,100);
         displacement = new Vector(0,0);

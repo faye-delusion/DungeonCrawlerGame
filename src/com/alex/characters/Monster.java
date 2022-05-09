@@ -5,7 +5,7 @@
  */
 package com.alex.characters;
 
-import com.alex.levels.Vector;
+import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,6 @@ public class Monster {
     Vector position;
     int direction;
     int speed;
-    int damage;
     boolean visible;
     int score;
     int spriteWidth;
@@ -35,13 +34,12 @@ public class Monster {
         this.name = "Monster";
         this.position = new Vector(300,300);
         this.speed = 5;
-        this.damage = 5;
         this.visible = true;
         this.score = 1;
         
         try{
         
-            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/monster.jpg"));
+            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/monster.png"));
         
         } 
         catch (Exception ex){
@@ -55,23 +53,22 @@ public class Monster {
     
     }
     
-    public Monster(Vector pos, int damage){
+    public Monster(Vector pos){
     
         this.name = "Monster";
         this.position = pos;
         this.speed = 5;
-        this.damage = damage;
         this.visible = true;
         this.score = 1;
         
         try{
         
-            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/monster.jpg"));
+            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/monster.png"));
         
         } 
         catch (Exception ex){
         
-            System.out.println(ex);
+            System.out.println(String.format("Error loading sprite for Monster\n%s", ex.toString()));
         
         }
         
@@ -85,18 +82,6 @@ public class Monster {
         Rectangle bounds = new Rectangle(this.position.getX(), this.position.getY(), this.spriteWidth, this.spriteHeight);
         
         return bounds;
-    
-    }
-    
-    public int getDamage(){
-    
-        return this.damage;
-    
-    }
-    
-    public void setDamage(int damage){
-    
-        this.damage = damage;
     
     }
     
