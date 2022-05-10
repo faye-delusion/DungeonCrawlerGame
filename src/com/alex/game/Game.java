@@ -29,11 +29,16 @@ public class Game {
     // Levels
     private Level1 lvl1;
     
+    // Variables to track over different levels
+    private int lives;
+    
     // Class constructor
     public Game(){
     
         initWindow();
         initScreens();
+        
+        this.lives = 3;
     
     }
     
@@ -46,9 +51,9 @@ public class Game {
         this.lvl1 = new Level1(this);
         this.lvl1.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
-        gameWindow.getContentPane().add(this.startScreen, "StartScreen");
-        gameWindow.getContentPane().add(this.lvl1, "Level1");
-        gameWindow.setVisible(true);
+        this.gameWindow.getContentPane().add(this.startScreen, "StartScreen");
+        this.gameWindow.getContentPane().add(this.lvl1, "Level1");
+        this.gameWindow.setVisible(true);
     
     }
     
@@ -63,8 +68,8 @@ public class Game {
         this.gameWindow.setResizable(false);
         this.gameWindow.setLocationRelativeTo(null);
         
-        gameWindow.setTitle(this.win_title);
-        gameWindow.setVisible(true);
+        this.gameWindow.setTitle(this.win_title);
+        this.gameWindow.setVisible(true);
     
     }
     
@@ -84,6 +89,12 @@ public class Game {
     
     }
     
+    public void endGame(){
+    
+        System.out.println("This is there the game will end.");
+    
+    }
+    
     public static void main(String[] args){
         
         Game game = new Game();
@@ -100,6 +111,24 @@ public class Game {
     public int getWindowHeight(){
     
         return this.win_height;
+    
+    }
+    
+    public int getLives(){
+    
+        return this.lives;
+        
+    }
+    
+    public void removeLife(){
+    
+        this.lives = this.lives - 1;
+        
+        if (this.lives < 1) {
+        
+            this.endGame();
+        
+        }
     
     }
     

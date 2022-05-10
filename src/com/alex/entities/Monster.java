@@ -103,6 +103,12 @@ public class Monster {
     
     }
     
+    public boolean getVisible(){
+    
+        return this.visible;
+        
+    }
+    
     public void setVisible(boolean visible){
     
         this.visible = visible;
@@ -135,41 +141,41 @@ public class Monster {
         
             case 0:
                 
-                displacement.setY(-speed);
+                displacement.setY(-this.speed);
                 break;
                 
             case 1:
                 
-                displacement.setY(speed);
+                displacement.setY(this.speed);
                 break;
                 
             case 2:
                 
-                displacement.setX(-speed);
+                displacement.setX(-this.speed);
                 break;
                 
             case 3:
                 
-                displacement.setX(speed);
+                displacement.setX(this.speed);
                 break;
         
         }
         
-        if (current_position.getX() < (spriteWidth / 2)) {
+        if (current_position.getX() < (this.spriteWidth / 2)) {
         
             displacement.setX(1);
         
-        } else if (current_position.getX() > levelWidth - (spriteWidth / 2)) {
+        } else if (current_position.getX() > levelWidth - (this.spriteWidth / 2)) {
         
             displacement.setX(-1);
         
         }
         
-        if (current_position.getY() < (spriteWidth / 2)) {
+        if (current_position.getY() < (this.spriteWidth / 2)) {
         
             displacement.setY(1);
         
-        } else if (current_position.getY() > levelWidth - (spriteWidth / 2)) {
+        } else if (current_position.getY() > levelWidth - (this.spriteWidth / 2)) {
         
             displacement.setY(-1);
         
@@ -185,7 +191,7 @@ public class Monster {
     
         if (this.visible == true){
         
-            g.drawImage(sprite, this.position.getX(), this.position.getY(), null);
+            g.drawImage(this.sprite, this.position.getX(), this.position.getY(), null);
             this.move(800,800);
         
         }

@@ -141,6 +141,18 @@ public class Level1 extends JPanel implements ActionListener{
             this.player.checkCollision(t);
             
         }
+        
+        for (Monster m : this.monsters) {
+        
+            boolean collide = this.player.checkCollision(m);
+            
+            if (collide == true) {
+            
+                System.out.println(1);
+            
+            }
+        
+        }
     
     }
     

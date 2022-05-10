@@ -79,6 +79,24 @@ public class Player {
     
     }
     
+    public boolean checkCollision(Monster m){
+        
+        if (m.getBounds().intersects(this.getBounds())) {
+        
+            if (m.getVisible() == true) {
+            
+                m.setVisible(false);
+            
+            }
+            
+            return true;
+        
+        }
+    
+        return false;
+    
+    }
+    
     public void setPosition(Vector v){
     
         position = v;
