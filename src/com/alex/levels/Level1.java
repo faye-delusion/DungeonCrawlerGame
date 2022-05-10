@@ -1,9 +1,9 @@
 package com.alex.levels;
 
-import com.alex.characters.Monster;
+import com.alex.entities.Monster;
 import com.alex.util.Vector;
-import com.alex.characters.Treasure;
-import com.alex.characters.Player;
+import com.alex.entities.Treasure;
+import com.alex.entities.Player;
 import com.alex.game.Game;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;

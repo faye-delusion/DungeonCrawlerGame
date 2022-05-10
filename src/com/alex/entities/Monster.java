@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.alex.characters;
+package com.alex.entities;
 
 import com.alex.util.Vector;
 import java.awt.Graphics2D;
