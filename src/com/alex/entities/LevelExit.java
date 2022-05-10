@@ -9,6 +9,6 @@ package com.alex.entities;
  *
  * @author alex
  */
-public class Character {
+public class LevelExit {
     
 }
