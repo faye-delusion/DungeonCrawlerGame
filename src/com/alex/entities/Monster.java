@@ -186,6 +186,7 @@ public class Monster {
         if (this.visible == true){
         
             g.drawImage(sprite, this.position.getX(), this.position.getY(), null);
+            this.move(800,800);
         
         }
     

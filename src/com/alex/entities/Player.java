@@ -123,26 +123,28 @@ public class Player {
     
     public void move(int direction){
     
+        int speed = 3;
+        
         switch (direction){
             
             case 1:
                 
-                displacement.setY(-1);
+                displacement.setY(-speed);
                 break;
             
             case 2:
                 
-                displacement.setY(1);
+                displacement.setY(speed);
                 break;
                 
             case 3:
                 
-                displacement.setX(-1);
+                displacement.setX(-speed);
                 break;
                 
             case 4:
                 
-                displacement.setX(1);
+                displacement.setX(speed);
                 break;
                 
             default:
