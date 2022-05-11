@@ -130,6 +130,8 @@ public class Level1 extends JPanel implements ActionListener{
         
         g2d.drawString(String.format("Time: %d", this.timeAlive), 0, 170);
         
+        g2d.drawString(String.format("Lives: %d", this.game.getLives()), 0, 190);
+        
         g2d.dispose();
     
     }
@@ -149,6 +151,8 @@ public class Level1 extends JPanel implements ActionListener{
             if (collide == true) {
             
                 System.out.println(1);
+                
+                this.game.removeLife();
             
             }
         
