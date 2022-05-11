@@ -29,16 +29,11 @@ public class Game {
     // Levels
     private Level1 lvl1;
     
-    // Variables to track over different levels
-    private int lives;
-    
     // Class constructor
     public Game(){
     
         initWindow();
         initScreens();
-        
-        this.lives = 3;
     
     }
     
@@ -91,7 +86,7 @@ public class Game {
     
     public void endGame(){
     
-        System.out.println("This is there the game will end.");
+        System.out.println("This is where the game will end.");
     
     }
     
@@ -114,17 +109,9 @@ public class Game {
     
     }
     
-    public int getLives(){
+    public void checkIfGameEnd(int lives){
     
-        return this.lives;
-        
-    }
-    
-    public void removeLife(){
-    
-        this.lives = this.lives - 1;
-        
-        if (this.lives < 1) {
+        if (lives <= 0) {
         
             this.endGame();
         

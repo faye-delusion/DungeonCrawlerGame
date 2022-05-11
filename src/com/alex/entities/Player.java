@@ -24,15 +24,17 @@ public class Player {
     private int spriteWidth;
     private int spriteHeight;
     private int score;
+    private int lives;
     
     public Player(){
     
-        position = new Vector(100,100);
-        displacement = new Vector(0,0);
+        this.position = new Vector(100,100);
+        this.displacement = new Vector(0,0);
         
-        score = 0;
+        this.score = 0;
+        this.lives = 3;
         
-        init();
+        this.init();
     
     }
     
@@ -40,7 +42,7 @@ public class Player {
     
         try{
         
-            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/character.png"));
+            this.sprite = ImageIO.read(getClass().getResourceAsStream("/Images/character.png"));
         
         } catch (Exception ex){
         
@@ -48,14 +50,14 @@ public class Player {
         
         }
         
-        spriteWidth = sprite.getWidth();
-        spriteHeight = sprite.getHeight();
+        this.spriteWidth = sprite.getWidth();
+        this.spriteHeight = sprite.getHeight();
     
     }
     
     public Rectangle getBounds(){
     
-        Rectangle bounds = new Rectangle(position.getX(), position.getY(), spriteWidth, spriteHeight);
+        Rectangle bounds = new Rectangle(this.position.getX(), this.position.getY(), this.spriteWidth, this.spriteHeight);
         return bounds;
     
     }
@@ -66,7 +68,7 @@ public class Player {
         
             if (t.getVisible() == true) {
             
-                score += t.getScore();
+                this.score += t.getScore();
                 t.setVisible(false);
             
             }
@@ -86,6 +88,8 @@ public class Player {
             if (m.getVisible() == true) {
             
                 m.setVisible(false);
+                
+                this.lives = this.lives - 1;
             
             }
             
@@ -94,6 +98,12 @@ public class Player {
         }
     
         return false;
+    
+    }
+    
+    public int getLives(){
+    
+        return this.lives;
     
     }
     

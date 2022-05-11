@@ -130,7 +130,7 @@ public class Level1 extends JPanel implements ActionListener{
         
         g2d.drawString(String.format("Time: %d", this.timeAlive), 0, 170);
         
-        g2d.drawString(String.format("Lives: %d", this.game.getLives()), 0, 190);
+        g2d.drawString(String.format("Lives: %d", this.player.getLives()), 0, 190);
         
         g2d.dispose();
     
@@ -148,13 +148,13 @@ public class Level1 extends JPanel implements ActionListener{
         
             boolean collide = this.player.checkCollision(m);
             
-            if (collide == true) {
-            
-                System.out.println(1);
-                
-                this.game.removeLife();
-            
-            }
+//            if (collide == true) {
+//            
+//                System.out.println(1);
+//                
+//                this.game.removeLife();
+//            
+//            }
         
         }
     
@@ -177,15 +177,22 @@ public class Level1 extends JPanel implements ActionListener{
         this.timer.stop();
     
     }
+    
+    public void checkLives(){
+    
+        this.game.checkIfGameEnd(this.player.getLives());
+    
+    }
 
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        collisions();
-        movement();
-        repaint();
+        this.collisions();
+        this.movement();
+        this.repaint();
+        this.checkLives();
         this.timeAlive = this.timeAlive + 1;
         
     }
