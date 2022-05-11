@@ -18,12 +18,12 @@ import javax.imageio.ImageIO;
  *
  * @author alex
  */
-public class EndScreen extends JPanel{
+public class WinScreen extends JPanel{
     
     private Game game;
     private BufferedImage background;
     
-    public EndScreen(Game game){
+    public WinScreen(Game game){
     
         this.game = game;
         init();

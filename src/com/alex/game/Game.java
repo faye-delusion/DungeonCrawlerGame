@@ -7,12 +7,15 @@
 // Package and Imports
 package com.alex.game;
 
+// Library imports
 import javax.swing.JFrame;
 import java.awt.CardLayout;
-import com.alex.screens.LoadingScreen;
-import com.alex.levels.Level1;
 import java.awt.Dimension;
 
+// Class imports
+import com.alex.screens.WinScreen;
+import com.alex.screens.LoadingScreen;
+import com.alex.levels.Level1;
 
 // Game class
 public class Game {
@@ -25,6 +28,8 @@ public class Game {
     // Game window
     private JFrame gameWindow;
     private LoadingScreen startScreen;
+    
+    private WinScreen winScreen;
     
     // Levels
     private Level1 lvl1;
@@ -42,12 +47,16 @@ public class Game {
         this.startScreen = new LoadingScreen(this);
         this.startScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
+        this.winScreen = new WinScreen(this);
+        this.winScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
+        
         // Levels
         this.lvl1 = new Level1(this);
         this.lvl1.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
         this.gameWindow.getContentPane().add(this.startScreen, "StartScreen");
         this.gameWindow.getContentPane().add(this.lvl1, "Level1");
+        this.gameWindow.getContentPane().add(this.winScreen, "WinScreen");
         this.gameWindow.setVisible(true);
     
     }
@@ -86,8 +95,14 @@ public class Game {
     
     public void endGame(){
     
-        System.out.println("This is where the game will end.");
+//        this.winScreen.requestFocus();
+//        this.gameWindow.setVisible(true);
     
+        CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
+        cl.next(this.gameWindow.getContentPane());
+        this.winScreen.requestFocus();
+//        this.lvl1.start();
+
     }
     
     public static void main(String[] args){
