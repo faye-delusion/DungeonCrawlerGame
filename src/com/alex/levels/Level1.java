@@ -175,6 +175,7 @@ public class Level1 extends JPanel implements ActionListener{
     public void stop(){
     
         this.timer.stop();
+        this.reset();
     
     }
     

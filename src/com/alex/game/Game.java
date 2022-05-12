@@ -129,6 +129,7 @@ public class Game {
         if (lives <= 0) {
         
             this.endGame();
+            this.lvl1.stop();
         
         }
     
