@@ -104,6 +104,7 @@ public class Level1 extends JPanel implements ActionListener{
         }
         
         t = null;
+        m = null;
     
     }
     
