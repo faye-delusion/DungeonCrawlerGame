@@ -90,6 +90,8 @@ public class Game {
     
         this.startScreen.requestFocus();
         this.gameWindow.setVisible(true);
+        this.lvl1.start();
+        this.lvl1.reset();
     
     }
     

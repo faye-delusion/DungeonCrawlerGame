@@ -161,21 +161,21 @@ public class Monster {
         
         }
         
-        if (current_position.getX() < (this.spriteWidth / 2)) {
+        if (current_position.getX() <= 1) {
         
             displacement.setX(1);
         
-        } else if (current_position.getX() > levelWidth - (this.spriteWidth / 2)) {
+        } else if (current_position.getX() > levelWidth - (this.spriteWidth)) {
         
             displacement.setX(-1);
         
         }
         
-        if (current_position.getY() < (this.spriteWidth / 2)) {
+        if (current_position.getY() < 1) {
         
             displacement.setY(1);
         
-        } else if (current_position.getY() > levelWidth - (this.spriteWidth / 2)) {
+        } else if (current_position.getY() > levelWidth - (this.spriteWidth)) {
         
             displacement.setY(-1);
         

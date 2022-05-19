@@ -34,10 +34,16 @@ public class Level1 extends JPanel implements ActionListener{
     private int number_of_treasures = 5;
     private int number_of_monsters = 5;
     
+    private int level_width;
+    private int level_height;
+    
     public Level1(Game game){
     
         this.game = game;
         player = new Player();
+        
+        this.level_width = this.game.getWindowWidth();
+        this.level_height = this.game.getWindowHeight();
         
         this.treasures = new Treasure[this.number_of_treasures];
         this.monsters = new Monster[this.number_of_monsters];
@@ -67,7 +73,7 @@ public class Level1 extends JPanel implements ActionListener{
     
     }
     
-    private void reset(){
+    public void reset(){
     
         Random random = new Random();
         
@@ -76,8 +82,8 @@ public class Level1 extends JPanel implements ActionListener{
         
         for (int i = 0; i < this.number_of_treasures; i++){
 
-            int x = random.nextInt(this.game.getWindowWidth() - (t.getSpriteWidth() * 2));
-            int y = random.nextInt(this.game.getWindowHeight() - (t.getSpriteHeight() * 2));
+            int x = random.nextInt(this.level_width - (t.getSpriteWidth() * 2));
+            int y = random.nextInt(this.level_height - (t.getSpriteHeight() * 2));
              
             Vector pos = new Vector(x,y);
         
@@ -88,8 +94,8 @@ public class Level1 extends JPanel implements ActionListener{
         
         for (int i = 0; i < this.number_of_monsters; i++) {
         
-            int x = random.nextInt(this.game.getWindowWidth() - (t.getSpriteWidth() * 2));
-            int y = random.nextInt(this.game.getWindowHeight() - (t.getSpriteHeight() * 2));
+            int x = random.nextInt(this.level_width - (t.getSpriteWidth() * 2));
+            int y = random.nextInt(this.level_height - (t.getSpriteHeight() * 2));
             
             Vector pos = new Vector(x,y);
             
@@ -98,6 +104,7 @@ public class Level1 extends JPanel implements ActionListener{
         }
         
         t = null;
+        this.start();
     
     }
     
@@ -230,7 +237,7 @@ public class Level1 extends JPanel implements ActionListener{
             
             }
             
-            player.move(move);
+            player.move(move, level_width, level_height);
         
         }
         

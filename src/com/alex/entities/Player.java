@@ -149,7 +149,7 @@ public class Player {
     
     }
     
-    public void move(int direction){
+    public void move(int direction, int levelWidth, int levelHeight){
     
         int speed = 3;
         
@@ -181,12 +181,35 @@ public class Player {
                      
                  
         }
-    
+        
+        if (this.position.getX() <= 1) {
+        
+            displacement.setX(1);
+        
+        } else if (this.position.getX() > levelWidth - (this.spriteWidth)) {
+        
+            this.position.setX(levelWidth - this.spriteWidth);
+        
+        }
+        
+        if (this.position.getY() <= 1) {
+        
+            displacement.setY(1);
+        
+        } else if (this.position.getY() > levelHeight - (this.spriteHeight)) {
+        
+            this.position.setY(levelHeight - this.spriteWidth);
+        
+        }
+        
+//        this.position.add(displacement);
+
     }
     
     public void doMove(){
     
-        position.add(displacement);
+        this.position.add(displacement);
+//        displacement = new Vector(0,0);
     
     }
     
