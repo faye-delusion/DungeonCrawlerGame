@@ -13,7 +13,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 // Class imports
-import com.alex.screens.WinScreen;
+import com.alex.screens.LoseScreen;
 import com.alex.screens.LoadingScreen;
 import com.alex.levels.Level1;
 
@@ -29,7 +29,7 @@ public class Game {
     private JFrame gameWindow;
     private LoadingScreen startScreen;
     
-    private WinScreen winScreen;
+    private LoseScreen winScreen;
     
     // Levels
     private Level1 lvl1;
@@ -47,7 +47,7 @@ public class Game {
         this.startScreen = new LoadingScreen(this);
         this.startScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
-        this.winScreen = new WinScreen(this);
+        this.winScreen = new LoseScreen(this);
         this.winScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
         // Levels
