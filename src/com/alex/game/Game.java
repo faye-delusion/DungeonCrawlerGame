@@ -16,6 +16,7 @@ import java.awt.Dimension;
 import com.alex.screens.LoseScreen;
 import com.alex.screens.LoadingScreen;
 import com.alex.levels.Level1;
+import com.alex.screens.WinScreen;
 
 // Game class
 public class Game {
@@ -28,8 +29,10 @@ public class Game {
     // Game window
     private JFrame gameWindow;
     private LoadingScreen startScreen;
+    private CardLayout card;
     
-    private LoseScreen winScreen;
+    private LoseScreen loseScreen;
+    private WinScreen winScreen;
     
     // Levels
     private Level1 lvl1;
@@ -44,10 +47,15 @@ public class Game {
     
     private void initScreens(){
     
+        this.card = new CardLayout();
+        
         this.startScreen = new LoadingScreen(this);
         this.startScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
-        this.winScreen = new LoseScreen(this);
+        this.loseScreen = new LoseScreen(this);
+        this.loseScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
+        
+        this.winScreen = new WinScreen(this);
         this.winScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
         // Levels
@@ -57,6 +65,7 @@ public class Game {
         this.gameWindow.getContentPane().add(this.startScreen, "StartScreen");
         this.gameWindow.getContentPane().add(this.lvl1, "Level1");
         this.gameWindow.getContentPane().add(this.winScreen, "WinScreen");
+        this.gameWindow.getContentPane().add(this.loseScreen, "LoseScreen");
         this.gameWindow.setVisible(true);
     
     }
@@ -65,6 +74,7 @@ public class Game {
     
         // Initiate window + set properties
         this.gameWindow = new JFrame();
+        
         
         this.gameWindow.setSize(this.win_width,this.win_height);
         this.gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,14 +105,25 @@ public class Game {
     
     }
     
-    public void endGame(){
+    public void winGame(){
+    
+        System.out.println("WIN!!!!!!!!!!!");
+        CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
+//        cl.next(this.gameWindow.getContentPane());
+        cl.show(this.gameWindow, "WinScreen");
+        this.winScreen.setVisible(true);
+        this.winScreen.requestFocus();
+        
+    }
+    
+    public void loseGame(){
     
 //        this.winScreen.requestFocus();
 //        this.gameWindow.setVisible(true);
-    
+        System.out.println("LOSE!!!!!!!!");
         CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
-        cl.next(this.gameWindow.getContentPane());
-        this.winScreen.requestFocus();
+        cl.show(this.gameWindow, "LoseScreen");
+        this.loseScreen.requestFocus();
 //        this.lvl1.start();
 
     }
@@ -130,11 +151,22 @@ public class Game {
     
         if (lives <= 0) {
         
-            this.endGame();
+            this.loseGame();
             this.lvl1.stop();
         
         }
     
+    }
+    
+    public void checkIfScoreMax(int score, int max){
+    
+        if (score >= max){
+        
+            this.winGame();
+            this.lvl1.stop();
+        
+        }
+        
     }
     
 }

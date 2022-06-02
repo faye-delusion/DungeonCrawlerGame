@@ -18,12 +18,12 @@ import javax.imageio.ImageIO;
  *
  * @author alex
  */
-public class LoseScreen extends JPanel{
+public class WinScreen extends JPanel{
     
     private Game game;
     private BufferedImage background;
     
-    public LoseScreen(Game game){
+    public WinScreen(Game game){
     
         this.game = game;
         init();
@@ -34,7 +34,7 @@ public class LoseScreen extends JPanel{
     
         try{
         
-            this.background = ImageIO.read(getClass().getResourceAsStream("/Images/LoseScreen.png"));
+            this.background = ImageIO.read(getClass().getResourceAsStream("/Images/WinScreen.png"));
         
         } 
         catch(Exception ex){

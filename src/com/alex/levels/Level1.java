@@ -190,6 +190,12 @@ public class Level1 extends JPanel implements ActionListener{
         this.game.checkIfGameEnd(this.player.getLives());
     
     }
+    
+    public void checkScore(){
+    
+        this.game.checkIfScoreMax(this.player.getScore(), this.monsters[0].getScore() * this.number_of_monsters);
+        
+    }
 
     
     
@@ -200,7 +206,9 @@ public class Level1 extends JPanel implements ActionListener{
         this.movement();
         this.repaint();
         this.checkLives();
+        this.checkScore();
         this.timeAlive = this.timeAlive + 1;
+        
         
     }
     

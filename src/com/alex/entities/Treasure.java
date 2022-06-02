@@ -33,7 +33,7 @@ public class Treasure {
         
         try{
         
-            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/treasure.jpg"));
+            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/treasure.png"));
         
         } 
         catch (Exception ex){
@@ -55,7 +55,7 @@ public class Treasure {
         
         try {
         
-            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/treasure.jpg"));
+            sprite = ImageIO.read(getClass().getResourceAsStream("/Images/treasure.png"));
         
         } catch (Exception ex){
         
