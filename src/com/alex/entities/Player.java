@@ -5,6 +5,8 @@
  */
 package com.alex.entities;
 
+import com.alex.game.Game;
+import com.alex.levels.Level1;
 import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -93,6 +95,19 @@ public class Player {
             
             }
             
+            return true;
+        
+        }
+    
+        return false;
+    
+    }
+    
+    public boolean checkCollision(LevelExit e, Game g){
+        
+        if (e.getBounds().intersects(getBounds())) {
+        
+            g.winGame();
             return true;
         
         }
@@ -223,6 +238,12 @@ public class Player {
     public void draw(Graphics2D g){
     
         g.drawImage(sprite, position.getX(), position.getY(), null);
+    
+    }
+    
+    public void setLives(int lives){
+    
+        this.lives = lives;
     
     }
     

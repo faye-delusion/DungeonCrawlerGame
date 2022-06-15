@@ -1,5 +1,6 @@
 package com.alex.levels;
 
+import com.alex.entities.LevelExit;
 import com.alex.entities.Monster;
 import com.alex.util.Vector;
 import com.alex.entities.Treasure;
@@ -30,12 +31,16 @@ public class Level1 extends JPanel implements ActionListener{
     private Monster[] monsters;
     private Treasure[] treasures;
     private int timeAlive;
+    private LevelExit door;
     
     private int number_of_treasures = 5;
     private int number_of_monsters = 5;
     
     private int level_width;
     private int level_height;
+    
+    boolean isGameEnded;
+    boolean drawDoor;
     
     public Level1(Game game){
     
@@ -47,6 +52,8 @@ public class Level1 extends JPanel implements ActionListener{
         
         this.treasures = new Treasure[this.number_of_treasures];
         this.monsters = new Monster[this.number_of_monsters];
+        
+        this.door = new LevelExit();
         
         init();
         reset();
@@ -79,6 +86,12 @@ public class Level1 extends JPanel implements ActionListener{
         
         Treasure t = new Treasure();
         Monster m = new Monster();
+        
+        this.player.setScore(0);
+        this.player.setLives(3);
+        this.timeAlive = 0;
+        
+        this.player.setPosition(new Vector(100,100));
         
         for (int i = 0; i < this.number_of_treasures; i++){
 
@@ -117,6 +130,12 @@ public class Level1 extends JPanel implements ActionListener{
         
         g2d.drawImage(background,0,0,null);
         
+        if (drawDoor == true){
+        
+            door.draw(g2d);
+        
+        }
+        
         this.player.draw(g2d);
         
         // Draw treasure
@@ -139,6 +158,15 @@ public class Level1 extends JPanel implements ActionListener{
         
         g2d.drawString(String.format("Lives: %d", this.player.getLives()), 0, 190);
         
+        
+        
+        if (isGameEnded == true){
+        
+            g2d.drawString("Game Over", 300,300);
+            this.stop();
+        
+        }
+        
         g2d.dispose();
     
     }
@@ -154,14 +182,12 @@ public class Level1 extends JPanel implements ActionListener{
         for (Monster m : this.monsters) {
         
             boolean collide = this.player.checkCollision(m);
-            
-//            if (collide == true) {
-//            
-//                System.out.println(1);
-//                
-//                this.game.removeLife();
-//            
-//            }
+        
+        }
+        
+        if (drawDoor == true){
+        
+            this.player.checkCollision(this.door, this.game);
         
         }
     
@@ -187,13 +213,13 @@ public class Level1 extends JPanel implements ActionListener{
     
     public void checkLives(){
     
-        this.game.checkIfGameEnd(this.player.getLives());
+        isGameEnded = this.game.checkIfGameEnd(this.player.getLives());
     
     }
     
     public void checkScore(){
     
-        this.game.checkIfScoreMax(this.player.getScore(), this.monsters[0].getScore() * this.number_of_monsters);
+        drawDoor = this.game.checkIfScoreMax(this.player.getScore(), 50 * this.number_of_treasures);
         
     }
 

@@ -84,7 +84,8 @@ public class Game {
     public void start(){
     
         CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
-        cl.next(this.gameWindow.getContentPane());
+        cl.show(this.gameWindow.getContentPane(), "Level1");
+        this.lvl1.reset();
         this.lvl1.requestFocus();
         this.lvl1.start();
         
@@ -104,16 +105,12 @@ public class Game {
         System.out.println("WIN!!!!!!!!!!!");
         CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
 //        cl.next(this.gameWindow.getContentPane());
-        cl.show(this.gameWindow, "WinScreen");
+        cl.show(this.gameWindow.getContentPane(), "WinScreen");
         this.winScreen.setVisible(true);
         this.winScreen.requestFocus();
         
     }
     
-    public void loseGame(){
-
-
-    }
     
     public static void main(String[] args){
         
@@ -134,25 +131,27 @@ public class Game {
     
     }
     
-    public void checkIfGameEnd(int lives){
+    public boolean checkIfGameEnd(int lives){
     
         if (lives <= 0) {
         
-            this.loseGame();
-            this.lvl1.stop();
+            return true;
         
         }
+        
+        return false;
     
     }
     
-    public void checkIfScoreMax(int score, int max){
+    public boolean checkIfScoreMax(int score, int max){
     
         if (score >= max){
         
-            this.winGame();
-            this.lvl1.stop();
+            return true;
         
         }
+        
+        return false;
         
     }
     
