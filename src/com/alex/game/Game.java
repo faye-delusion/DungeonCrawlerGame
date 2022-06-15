@@ -13,7 +13,6 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 // Class imports
-import com.alex.screens.LoseScreen;
 import com.alex.screens.LoadingScreen;
 import com.alex.levels.Level1;
 import com.alex.screens.WinScreen;
@@ -31,7 +30,6 @@ public class Game {
     private LoadingScreen startScreen;
     private CardLayout card;
     
-    private LoseScreen loseScreen;
     private WinScreen winScreen;
     
     // Levels
@@ -52,9 +50,6 @@ public class Game {
         this.startScreen = new LoadingScreen(this);
         this.startScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
-        this.loseScreen = new LoseScreen(this);
-        this.loseScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
-        
         this.winScreen = new WinScreen(this);
         this.winScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
@@ -65,7 +60,6 @@ public class Game {
         this.gameWindow.getContentPane().add(this.startScreen, "StartScreen");
         this.gameWindow.getContentPane().add(this.lvl1, "Level1");
         this.gameWindow.getContentPane().add(this.winScreen, "WinScreen");
-        this.gameWindow.getContentPane().add(this.loseScreen, "LoseScreen");
         this.gameWindow.setVisible(true);
     
     }
@@ -117,14 +111,7 @@ public class Game {
     }
     
     public void loseGame(){
-    
-//        this.winScreen.requestFocus();
-//        this.gameWindow.setVisible(true);
-        System.out.println("LOSE!!!!!!!!");
-        CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
-        cl.show(this.gameWindow, "LoseScreen");
-        this.loseScreen.requestFocus();
-//        this.lvl1.start();
+
 
     }
     
