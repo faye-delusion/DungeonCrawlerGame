@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.entities;
 
+// imports
 import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -17,6 +13,7 @@ import javax.imageio.ImageIO;
  */
 public class Treasure {
     
+    // variables
     private Vector position;
     private int spriteWidth;
     private int spriteHeight;
@@ -31,6 +28,7 @@ public class Treasure {
         score = 50;
         visible = true;
         
+        // load image
         try{
         
             sprite = ImageIO.read(getClass().getResourceAsStream("/Images/treasure.png"));
@@ -53,6 +51,7 @@ public class Treasure {
         this.score = 50;
         this.visible = true;
         
+        // load image
         try {
         
             sprite = ImageIO.read(getClass().getResourceAsStream("/Images/treasure.png"));
@@ -86,6 +85,7 @@ public class Treasure {
     
     }
     
+    // return object boundaries
     public Rectangle getBounds(){
         
         Rectangle bounds = new Rectangle(position.getX(), position.getY(), spriteWidth, spriteHeight);
@@ -129,6 +129,7 @@ public class Treasure {
     
     }
     
+    // draw treasure on canvas
     public void draw(Graphics2D graphic){
     
         if (visible == true){

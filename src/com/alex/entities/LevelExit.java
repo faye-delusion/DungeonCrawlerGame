@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.entities;
 
+// imports
 import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -18,6 +14,7 @@ import java.util.Random;
  */
 public class LevelExit {
     
+    // variables
     private Vector position;
     private int spriteWidth;
     private int spriteHeight;
@@ -30,10 +27,12 @@ public class LevelExit {
     
         Random random = new Random();
         
+        // positions the door randomly on the canvas
         position = new Vector(random.nextInt(600 - 32),random.nextInt(600 - 32));
         score = 50;
         visible = true;
         
+        // load image
         try{
         
             sprite = ImageIO.read(getClass().getResourceAsStream("/Images/LevelExit.png"));
@@ -52,10 +51,12 @@ public class LevelExit {
     
     public LevelExit(Vector position){
     
+        // set position
         this.position = new Vector(position);
         this.score = 50;
         this.visible = true;
         
+        // load image
         try {
         
             sprite = ImageIO.read(getClass().getResourceAsStream("/Images/LevelExit.png"));
@@ -89,6 +90,7 @@ public class LevelExit {
     
     }
     
+    // return object boundaries
     public Rectangle getBounds(){
         
         Rectangle bounds = new Rectangle(position.getX(), position.getY(), spriteWidth, spriteHeight);
@@ -132,6 +134,7 @@ public class LevelExit {
     
     }
     
+    // draw image on canvas
     public void draw(Graphics2D graphic){
     
         if (visible == true){

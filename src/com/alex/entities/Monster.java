@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.entities;
 
+// imports
 import com.alex.util.Vector;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -18,6 +14,7 @@ import javax.imageio.ImageIO;
  */
 public class Monster {
     
+    // variables
     String name;
     Vector position;
     int direction;
@@ -37,6 +34,7 @@ public class Monster {
         this.visible = true;
         this.score = 1;
         
+        // load image
         try{
         
             sprite = ImageIO.read(getClass().getResourceAsStream("/Images/monster.png"));
@@ -61,6 +59,7 @@ public class Monster {
         this.visible = true;
         this.score = 1;
         
+        // load image
         try{
         
             sprite = ImageIO.read(getClass().getResourceAsStream("/Images/monster.png"));
@@ -77,6 +76,7 @@ public class Monster {
     
     }
     
+    // return object boundaries
     public Rectangle getBounds(){
     
         Rectangle bounds = new Rectangle(this.position.getX(), this.position.getY(), this.spriteWidth, this.spriteHeight);
@@ -127,6 +127,7 @@ public class Monster {
     
     }
     
+    // pick random direction to move monster, called every frame
     public void move(int levelWidth, int levelHeight){
     
         Random random = new Random();
@@ -135,8 +136,11 @@ public class Monster {
         Vector current_position = new Vector(this.position.getX(), this.position.getY());
         Vector displacement = new Vector();
         
+        
+        // randomise direction
         random_direction = random.nextInt(4);
         
+        // displace monster position based on randomised direction
         switch(random_direction){
         
             case 0:
@@ -161,6 +165,7 @@ public class Monster {
         
         }
         
+        // set monster back in bounds if it escapes canvas boundary
         if (current_position.getX() <= 1) {
         
             displacement.setX(1);
@@ -187,6 +192,7 @@ public class Monster {
     
     }
     
+    // draw monster on canvas
     public void draw(Graphics2D g){
     
         if (this.visible == true){

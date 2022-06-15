@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.util;
 
 /**
@@ -11,9 +6,11 @@ package com.alex.util;
  */
 public class Vector {
     
+    // variables
     private int x;
     private int y;
     
+    // default constructor, no arguments
     public Vector(){
     
         x=0;
@@ -21,6 +18,7 @@ public class Vector {
     
     }
     
+    // constructor with X and Y argument
     public Vector(int newX, int newY){
     
         x = newX;
@@ -28,6 +26,7 @@ public class Vector {
     
     }
     
+    // constructor with Vector argument
     public Vector(Vector v){
     
         x = v.getX();
@@ -35,6 +34,7 @@ public class Vector {
     
     }
     
+    // add X and Y of another Vector to this.x, this.y
     public void add(Vector v){
     
         x += v.getX();

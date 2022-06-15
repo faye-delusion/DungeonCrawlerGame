@@ -1,5 +1,6 @@
 package com.alex.levels;
 
+// imports
 import com.alex.entities.LevelExit;
 import com.alex.entities.Monster;
 import com.alex.util.Vector;
@@ -24,6 +25,7 @@ import javax.swing.Timer;
  */
 public class Level1 extends JPanel implements ActionListener{
     
+    // variables
     private Game game;
     private Timer timer;
     private BufferedImage background;
@@ -44,6 +46,7 @@ public class Level1 extends JPanel implements ActionListener{
     
     public Level1(Game game){
     
+        // create level objects
         this.game = game;
         player = new Player();
         
@@ -66,6 +69,7 @@ public class Level1 extends JPanel implements ActionListener{
         setFocusable(true);
         setDoubleBuffered(true);
         
+        // load image
         try {
         
             background = ImageIO.read(getClass().getResourceAsStream("/Images/Level1Background.png"));
@@ -87,12 +91,15 @@ public class Level1 extends JPanel implements ActionListener{
         Treasure t = new Treasure();
         Monster m = new Monster();
         
+        // reset score, lives, timer
         this.player.setScore(0);
         this.player.setLives(3);
         this.timeAlive = 0;
         
+        // reset player position
         this.player.setPosition(new Vector(100,100));
         
+        // randomise position of each treasure object
         for (int i = 0; i < this.number_of_treasures; i++){
 
             int x = random.nextInt(this.level_width - (t.getSpriteWidth() * 2));
@@ -105,6 +112,7 @@ public class Level1 extends JPanel implements ActionListener{
         
         }
         
+        // randomise position of each monster object
         for (int i = 0; i < this.number_of_monsters; i++) {
         
             int x = random.nextInt(this.level_width - (t.getSpriteWidth() * 2));
@@ -130,28 +138,31 @@ public class Level1 extends JPanel implements ActionListener{
         
         g2d.drawImage(background,0,0,null);
         
+        // draw door if drawDoor is true
         if (drawDoor == true){
         
             door.draw(g2d);
         
         }
         
+        // draw player
         this.player.draw(g2d);
         
-        // Draw treasure
+        // Draw treasure objects
         for (Treasure t : this.treasures) {
         
             t.draw(g2d);
         
         }
         
-        // Draw monsters
+        // Draw monster objects
         for (Monster m : this.monsters) {
         
             m.draw(g2d);
         
         }
         
+        // draw score, timer, lives display
         g2d.drawString(String.format("Score: %d", this.player.getScore()), 0, 150);
         
         g2d.drawString(String.format("Time: %d", this.timeAlive), 0, 170);
@@ -159,7 +170,7 @@ public class Level1 extends JPanel implements ActionListener{
         g2d.drawString(String.format("Lives: %d", this.player.getLives()), 0, 190);
         
         
-        
+        // draw game over text, stop the game.
         if (isGameEnded == true){
         
             g2d.drawString("Game Over", 300,300);
@@ -167,24 +178,28 @@ public class Level1 extends JPanel implements ActionListener{
         
         }
         
+        // destroy g2d object to save memory
         g2d.dispose();
     
     }
     
     public void collisions(){
     
+        // check if player colliding with each treasure
         for (Treasure t : this.treasures) {
         
             this.player.checkCollision(t);
             
         }
         
+        // check if player colliding with each monster
         for (Monster m : this.monsters) {
         
-            boolean collide = this.player.checkCollision(m);
+            this.player.checkCollision(m);
         
         }
         
+        // check if player colliding with the door if the door is being drawn
         if (drawDoor == true){
         
             this.player.checkCollision(this.door, this.game);
@@ -224,7 +239,7 @@ public class Level1 extends JPanel implements ActionListener{
     }
 
     
-    
+    // run each frame
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -240,6 +255,7 @@ public class Level1 extends JPanel implements ActionListener{
     
     private class TAdapter extends KeyAdapter{
     
+        // detect key press
         @Override
         public void keyPressed(KeyEvent e){
         

@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.entities;
 
+// imports
 import com.alex.game.Game;
 import com.alex.levels.Level1;
 import com.alex.util.Vector;
@@ -19,6 +15,7 @@ import javax.imageio.ImageIO;
  */
 public class Player {
     
+    // variables
     private Vector position;
     private Vector displacement;
     
@@ -42,6 +39,7 @@ public class Player {
     
     private void init(){
     
+        // load image
         try{
         
             this.sprite = ImageIO.read(getClass().getResourceAsStream("/Images/character.png"));
@@ -57,6 +55,7 @@ public class Player {
     
     }
     
+    // return object boundaries
     public Rectangle getBounds(){
     
         Rectangle bounds = new Rectangle(this.position.getX(), this.position.getY(), this.spriteWidth, this.spriteHeight);
@@ -64,6 +63,7 @@ public class Player {
     
     }
     
+    // check for a collision with a treasure
     public boolean checkCollision(Treasure t){
         
         if (t.getBounds().intersects(getBounds())) {
@@ -83,6 +83,7 @@ public class Player {
     
     }
     
+    // check for a collision with a monster
     public boolean checkCollision(Monster m){
         
         if (m.getBounds().intersects(this.getBounds())) {
@@ -103,10 +104,12 @@ public class Player {
     
     }
     
+    // check for a collision with a door
     public boolean checkCollision(LevelExit e, Game g){
         
         if (e.getBounds().intersects(getBounds())) {
         
+            // end the game
             g.winGame();
             return true;
         
@@ -164,6 +167,7 @@ public class Player {
     
     }
     
+    // move player in specified direction
     public void move(int direction, int levelWidth, int levelHeight){
     
         int speed = 3;
@@ -197,6 +201,7 @@ public class Player {
                  
         }
         
+        // move player back in bounds if player escapes canvas boundary
         if (this.position.getX() <= 1) {
         
             displacement.setX(1);
@@ -216,15 +221,12 @@ public class Player {
             this.position.setY(levelHeight - this.spriteWidth);
         
         }
-        
-//        this.position.add(displacement);
 
     }
     
     public void doMove(){
     
         this.position.add(displacement);
-//        displacement = new Vector(0,0);
     
     }
     

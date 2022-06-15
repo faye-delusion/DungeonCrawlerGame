@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.alex.screens;
+
+// imports
 import com.alex.game.Game;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
@@ -20,6 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class LoadingScreen extends JPanel{
     
+    // variables
     private Game game;
     private BufferedImage background;
     
@@ -32,6 +30,7 @@ public class LoadingScreen extends JPanel{
     
     private void init(){
     
+        // load background image
         try{
         
             this.background = ImageIO.read(getClass().getResourceAsStream("/Images/LoadingScreen.png"));
@@ -53,12 +52,14 @@ public class LoadingScreen extends JPanel{
     
         super.paintComponent(g); // required
         
+        // draw background
         g.drawImage(background, 0, 0, null);
     
     }
     
     private class TAdapter extends KeyAdapter{
     
+        // detect key press
         @Override
         public void keyReleased(KeyEvent e){
         

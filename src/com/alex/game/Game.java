@@ -47,9 +47,11 @@ public class Game {
     
         this.card = new CardLayout();
         
+        // create start screen
         this.startScreen = new LoadingScreen(this);
         this.startScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
+        // create win screen
         this.winScreen = new WinScreen(this);
         this.winScreen.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
@@ -57,6 +59,7 @@ public class Game {
         this.lvl1 = new Level1(this);
         this.lvl1.setPreferredSize(new Dimension(this.win_width, this.win_height));
         
+        // add each screen to content pane
         this.gameWindow.getContentPane().add(this.startScreen, "StartScreen");
         this.gameWindow.getContentPane().add(this.lvl1, "Level1");
         this.gameWindow.getContentPane().add(this.winScreen, "WinScreen");
@@ -83,6 +86,7 @@ public class Game {
     
     public void start(){
     
+        // begin level 1
         CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
         cl.show(this.gameWindow.getContentPane(), "Level1");
         this.lvl1.reset();
@@ -102,16 +106,15 @@ public class Game {
     
     public void winGame(){
     
-        System.out.println("WIN!!!!!!!!!!!");
+        // show win screen
         CardLayout cl = (CardLayout) this.gameWindow.getContentPane().getLayout();
-//        cl.next(this.gameWindow.getContentPane());
         cl.show(this.gameWindow.getContentPane(), "WinScreen");
         this.winScreen.setVisible(true);
         this.winScreen.requestFocus();
         
     }
     
-    
+    // main function, runs when program is run
     public static void main(String[] args){
         
         Game game = new Game();
